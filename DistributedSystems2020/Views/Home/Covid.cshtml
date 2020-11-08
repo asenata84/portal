@@ -1,0 +1,47 @@
+﻿@model DistributedSystems2020.Models.IndexViewModel
+@{
+    ViewBag.Title = "Covid-19";
+}
+
+<style>
+    .list-wrapper {
+        padding: 8px;
+        margin-top: 16px;
+        box-shadow: 0px 0px 4px #808080;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    .list-item {
+        padding:8px;
+    }
+
+</style>
+
+<div class="jumbotron">
+    <h1>@Model.Title</h1>
+    <hr />
+
+    @if (Model.Covid != null)
+    {
+        foreach (Response element in Model.Covid.Response)
+        {
+            <div class="list-wrapper">
+                <div class="list-item"> Active: @element.cases.active</div>
+                <div class="list-item"> Total: @element.cases.total</div>
+                <div class="list-item"> Recovered: @element.cases.recovered</div>
+                <div class="list-item"> Critical: @element.cases.critical</div>
+                <div class="list-item"> Deaths: @element.deaths.total</div>
+            </div>
+            break;
+        }
+
+
+        if (Model.Covid.Response.Length == 0)
+        {
+            <div class="alert alert-warning">
+                Няма информация!
+            </div>
+        }
+    }
+
+</div>

@@ -1,0 +1,16 @@
+﻿@model DistributedSystems2020.Models.PostModel
+
+@{
+    ViewBag.Title = @Html.DisplayFor(model => model.Title);
+}
+
+<h2>@Html.DisplayFor(model => model.Title)</h2>
+<hr/>
+<h3>By @Html.DisplayNameFor(model => model.Author)</h3>
+<p>@Html.DisplayFor(model => model.Title)</p>
+<hr />
+<p>
+    @Html.ActionLink("<< Back", "Index", new { id = Model.Id }) &nbsp;&nbsp;|&nbsp;&nbsp;
+    @Html.ActionLink(" ", "Edit", new { id = Model.Id }, new { @class = "glyphicon glyphicon-pencil" })
+
+</p>

@@ -1,0 +1,45 @@
+﻿@model WeatherModel
+@{
+    ViewBag.Title = "Weather";
+}
+<style>
+    .info-box {
+        color: #5cb85c;
+        font-weight: bold;
+    }
+</style>
+<div style="margin-top:40px">
+    @using (Html.BeginForm("Weather", "Home", FormMethod.Get))
+    {
+        <div class="row">
+            @using (Html.BeginForm("Index", "Posts", FormMethod.Get))
+            {
+                <div class="col-md-3">
+                    @Html.TextBoxFor(x => x.City, new { @class = "form-control", @placeholder = "Enter place ..." })
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success">Check Weather</button>
+                </div>
+            }
+        </div>
+    }
+    <hr />
+    @if (Model.Weather != null)
+    {
+        <div class="row">
+            <div class="col-md-3">
+                Name: <span class="info-box">@Model.Weather.name</span>
+            </div>
+            <div class="col-md-3">
+                Description: <span class="info-box">@Model.Weather.weather[0].description</span>
+            </div>
+            <div class="col-md-3">
+                Temperature: <span class="info-box">@Model.Weather.main.temp° C</span>
+            </div>
+            <div class="col-md-3">
+                Feels Like:<span class="info-box"> @Model.Weather.main.feels_like° C</span>
+            </div>
+        </div>
+    }
+
+</div>

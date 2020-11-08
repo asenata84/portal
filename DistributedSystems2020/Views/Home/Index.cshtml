@@ -1,0 +1,45 @@
+﻿@model DistributedSystems2020.Models.IndexViewModel
+@{
+    ViewBag.Title = "News";
+}
+
+<style>
+    .list-item {
+        margin-top: 16px;
+        box-shadow: 0px 0px 4px #808080;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+        .list-item img {
+            border-radius: 5px;
+            margin-right: 16px;
+        }
+</style>
+
+<div class="jumbotron">
+    <h1>@Model.Title</h1>
+    <hr />
+
+    @if (Model.News != null)
+    {
+        foreach (Payload element in Model.News.value)
+        {
+            <a href="@element.url ? element.url : ''" target="_blank">
+                <div class="list-item">
+                    @if (element?.image?.thumbnail?.contentUrl != null) {
+                    <img src="@element.image.thumbnail.contentUrl" height="100" />  @element.name
+                    }
+                </div>
+            </a>
+        }
+
+        if (Model.News.value.Length == 0)
+        {
+            <div class="alert alert-warning">
+                Няма информация!
+            </div>
+        }
+    }
+
+</div>
